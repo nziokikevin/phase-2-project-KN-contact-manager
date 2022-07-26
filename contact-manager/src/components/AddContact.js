@@ -1,22 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
 
 function AddContact(){
-    return(
-        <div className="ui main">
-            <h2>Add Contact</h2>
-            <form className="ui form">
-                <div className="field">
-                    <label>Name</label>
-                    <input type="text" name="name" placeholder="Name" />
-                </div>
-                <div className="field">
-                    <label>Email</label>
-                    <input type="text" name="email" placeholder="Email" />
-                </div>
-                <button type="button" className="btn btn-primary">Add</button>
-            </form>
-        </div>
-    )
-}
+    const[contactAdd, setContactAdd] = useState({
+        name:"",
+        email:""
+    })
 
+    function handleChange(e){
+        setContactAdd({...contactAdd, [e.target.name]:e.target.value})
+    }
+
+    function handleSubmit(e){
+        e.preventDefault()
+        contactAdd.value=""
+        setContactAdd("")
+        e.target.reset()
+    }
+    return(
+    <form className="addContactForm" onSubmit={handleSubmit} >
+        <div>
+            <h3>Name</h3>
+            <input placeholder="Name" name="name" onChange={handleChange} value={contactAdd.name} />
+        </div>
+        <div>
+            <h3>Email</h3>
+            <input placeholder="Email"  name="email" onChange={handleChange} value={contactAdd.email} />
+        </div>
+      <button style={{background:"blue", marginTop:"10px"}}>Add</button>
+    </form>
+    )
+    
+}
 export default AddContact;
