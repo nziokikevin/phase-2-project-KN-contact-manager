@@ -1,24 +1,31 @@
-import React, {useState} from "react";
-import './App.css';
-import Header from "./Header";
-import AddContact from "./AddContact";
+import React from "react";
+import {Switch, Route} from "react-router-dom";
 import ContactList from "./ContactList";
+import NavBar from "./NavBar";
+import AddContact from "./AddContact";
+import ViewContact from "./ViewContact";
+import EditContact from "./EditContact";
 
-function App() {
-  const[contacts, setContacts] = useState([]);
- 
-
-  function addContactForm(contact){
-    setContacts([...contacts, contact]);
-  };
-
-  return (
+function App(){
+  return(
     <div>
-      <Header />
-      <AddContact addContactForm={addContactForm} />
-      <ContactList contacts={contacts}/>
+      <NavBar />
+      <Switch>
+        <Route exact path="/" >
+          <ContactList />
+        </Route>
+        <Route exact path="/contacts/add" >
+          <AddContact />
+        </Route>
+        <Route exact path="/contacts/view" >
+          <ViewContact />
+        </Route>
+        <Route exact path="/contacts/edit" >
+          <EditContact />
+        </Route>
+      </Switch>
     </div>
-  );
+  )
 }
 
 export default App;
