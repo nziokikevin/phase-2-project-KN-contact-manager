@@ -40,7 +40,7 @@ function EditContact(){
                         </form>
                     </div>
                     <div className="col-md-6">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="" className="contact-img" />
+                    <img src="https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png" alt="" className="contact-img" />
                     </div>
                 </div>
             </div>

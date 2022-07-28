@@ -1,7 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 import {NavLink} from "react-router-dom"
 
 function AddContact(){
+    const[contactAdd, setContactAdd] = useState({
+        contact:{
+            name:'',
+            phone:'',
+            email:'',
+            company:'',
+            group:''
+        },
+    })
+
+    const updateInput = (e) => {
+        setContactAdd({...contactAdd, contact:{...contactAdd.contact,[e.target.name]:e.target.value}})
+    }
+
+    const{contact} = contactAdd;
 
     return(
         <div>
@@ -17,19 +32,44 @@ function AddContact(){
                     <div className="col-md-4">
                         <form>
                             <div className="mb-2">
-                                <input type="text" className="form-control" placeholder="Name" />
+                                <input
+                                required={true} 
+                                name="name"
+                                value={contact.name}
+                                onChange={updateInput}
+                                type="text" className="form-control" placeholder="Name" />
                             </div>
                             <div className="mb-2">
-                                <input type="number" className="form-control" placeholder="Mobile" />
+                                <input
+                                required={true} 
+                                name="mobile"
+                                value={contact.phone}
+                                onChange={updateInput}
+                                type="number" className="form-control" placeholder="Mobile" />
                             </div>
                             <div className="mb-2">
-                                <input type="email" className="form-control" placeholder="Email" />
+                                <input 
+                                required={true} 
+                                name="email"
+                                value={contact.email}
+                                onChange={updateInput}
+                                type="email" className="form-control" placeholder="Email" />
                             </div>
                             <div className="mb-2">
-                                <input type="text" className="form-control" placeholder="Company" />
+                                <input 
+                                required={true} 
+                                name="company"
+                                value={contact.company}
+                                onChange={updateInput}
+                                type="text" className="form-control" placeholder="Company" />
                             </div>
                             <div className="mb-2">
-                                <select className="form-control">
+                                <select 
+                                required={true} 
+                                name="group"
+                                value={contact.group}
+                                onChange={updateInput}
+                                className="form-control">
                                     <option value="">Select a group</option>
                                 </select>
                             </div>
@@ -40,7 +80,7 @@ function AddContact(){
                         </form>
                     </div>
                     <div className="col-md-6">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="" className="contact-img" />
+                    <img src="https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png" alt="" className="contact-img" />
                     </div>
                 </div>
             </div>

@@ -7,6 +7,7 @@ import ViewContact from "./ViewContact";
 import EditContact from "./EditContact";
 
 function App(){
+  
   return(
     <div>
       <NavBar />
@@ -17,10 +18,10 @@ function App(){
         <Route exact path="/contacts/add" >
           <AddContact />
         </Route>
-        <Route exact path="/contacts/view" >
+        <Route exact path="/contacts/view/:contactId" >
           <ViewContact />
         </Route>
-        <Route exact path="/contacts/edit" >
+        <Route exact path="/contacts/edit/:contactId" >
           <EditContact />
         </Route>
       </Switch>
