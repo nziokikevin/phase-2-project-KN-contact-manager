@@ -38,8 +38,10 @@ function AddContact(){
         })
         .then((r) => r.json())
         .then((newContact) => {
-            updateInput(newContact);
+        console.log(newContact);
             history.push("/");
+            e.target.reset()
+            
         });
     }
 
