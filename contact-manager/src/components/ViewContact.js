@@ -14,7 +14,15 @@ function ViewContact(){
             setIsLoaded(true);
         })
     }, [contactId])
-    if(!isLoaded) return <h3>Loading...</h3>
+    if(!isLoaded) return <div><button class="btn btn-primary" type="button" disabled>
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    <span class="visually-hidden">Loading...</span>
+  </button>
+  <button class="btn btn-primary" type="button" disabled>
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Loading...
+  </button>
+</div>
     return(
         <div>
             <section className="view-contact-intro p-3">

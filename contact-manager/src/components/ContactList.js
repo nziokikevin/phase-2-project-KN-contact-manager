@@ -27,7 +27,15 @@ function ContactList(){
           })
 
     }
-    if(!isLoaded) return <h3>Loading....</h3>
+    if(!isLoaded) return <div><button class="btn btn-primary" type="button" disabled>
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    <span class="visually-hidden">Loading...</span>
+  </button>
+  <button class="btn btn-primary" type="button" disabled>
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Loading...
+  </button>
+  </div>
     return(
         <div>
         <section className="contact-search p-2" >
@@ -40,7 +48,7 @@ function ContactList(){
                                     <i className="fa fa-plus-circle me-1" />
                                     New</NavLink>
                             </p>
-                            <p className="fst-italic">Welcome to the newest contact management system in town</p>
+                            <p className="fst-italic">Welcome to the newest contact management system in town. You save, we sort!</p>
                         </div>
                         <div className="row">
                             <div className="col-md-6">

@@ -8,7 +8,7 @@ function NavBar(){
             <nav className="navbar navbar-dark bg-dark navbar-expand-sm">
                 <div className="container">
                     <NavLink to={"/"} className="navbar-brand" >
-                        <i className="fa fa-mobile text-danger"/> Contact <span className="text-danger">Manager</span>
+                        <i className="fa fa-mobile text-danger"/><span className="text-danger"> KN </span> Contact <span className="text-danger">Manager</span>
                     </NavLink>
                 </div>
             </nav>
