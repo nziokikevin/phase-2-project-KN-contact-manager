@@ -10,6 +10,18 @@ function ContactList(){
         .then((contactData) => setContacts(contactData))
     }, [])
 
+    function handleDelete(contactId) {
+        fetch(`https://json-server-contact-api.herokuapp.com/contacts/${contactId}`, {
+          method: "DELETE",
+        })
+          .then((r) => r.json())
+          .then(() => {
+        const updateContact = contacts.filter((contact) => contact.id !== contactId)
+        setContacts(updateContact)
+          })
+
+    }
+
     return(
         <div>
         <section className="contact-search p-2" >
@@ -77,10 +89,7 @@ function ContactList(){
                                             <NavLink to={`/contacts/view/${contact.id}`} className="btn btn-warning my-1">
                                                 <i className="fa fa-eye" />
                                             </NavLink>
-                                            <NavLink to={`/contacts/edit/${contact.id}`} className="btn btn-primary my-1">
-                                                <i className="fa fa-pen" />
-                                            </NavLink>
-                                            <button className="btn btn-danger my-1">
+                                            <button className="btn btn-danger my-1" onClick={() => handleDelete(contact.id)}>
                                                 <i className="fa fa-trash" />
                                             </button>
                                         </div>

@@ -9,7 +9,7 @@ function AddContact(){
             email:'',
             company:'',
             group:''
-        },
+        }
     })
 
     const updateInput = (e) => {
@@ -17,6 +17,26 @@ function AddContact(){
     }
 
     const{contact} = contactAdd;
+
+    function handleSubmit(e){
+        e.preventDefault();
+        const contactData = {
+            name: contact.name,
+            phone: contact.mobile,
+            email: contact.email,
+            company: contact.company,
+            group: contact.group
+        }
+        fetch("https://json-server-contact-api.herokuapp.com/contacts", {
+            method: 'POST',
+            headers:{
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(contactData),
+        })
+        .then((r) => r.json())
+        .then((newContact) => updateInput(newContact))
+    }
 
     return(
         <div>
@@ -30,7 +50,7 @@ function AddContact(){
                 </div>
                 <div className="row">
                     <div className="col-md-4">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className="mb-2">
                                 <input
                                 required={true} 
@@ -43,7 +63,7 @@ function AddContact(){
                                 <input
                                 required={true} 
                                 name="mobile"
-                                value={contact.phone}
+                                value={contact.mobile}
                                 onChange={updateInput}
                                 type="number" className="form-control" placeholder="Mobile" />
                             </div>
@@ -70,7 +90,12 @@ function AddContact(){
                                 value={contact.group}
                                 onChange={updateInput}
                                 className="form-control">
-                                    <option value="">Select a group</option>
+                                    <option>Select a group</option>
+                                    <option>Colleague</option>
+                                    <option>Community</option>
+                                    <option>Family</option>
+                                    <option>Friend</option>
+                                    <option>Social</option>
                                 </select>
                             </div>
                             <div className="mb-2">

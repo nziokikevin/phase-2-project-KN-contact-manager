@@ -4,7 +4,7 @@ import ContactList from "./ContactList";
 import NavBar from "./NavBar";
 import AddContact from "./AddContact";
 import ViewContact from "./ViewContact";
-import EditContact from "./EditContact";
+
 
 function App(){
   
@@ -20,9 +20,6 @@ function App(){
         </Route>
         <Route exact path="/contacts/view/:contactId" >
           <ViewContact />
-        </Route>
-        <Route exact path="/contacts/edit/:contactId" >
-          <EditContact />
         </Route>
       </Switch>
     </div>
