@@ -3,11 +3,14 @@ import {NavLink} from "react-router-dom"
 
 function ContactList(){
     const[contacts, setContacts] = useState([]);
+    const[search, setSearch] = useState('')
+
 
     useEffect(() => {
         fetch("https://json-server-contact-api.herokuapp.com/contacts")
         .then((r) => r.json())
         .then((contactData) => setContacts(contactData))
+
     }, [])
 
     function handleDelete(contactId) {
@@ -41,7 +44,11 @@ function ContactList(){
                                 <form className="row" >
                                     <div className="col">
                                     <div className="mb-2">
-                                        <input type="text"className="form-control" placeholder="Search Names" />
+                                        <input 
+                                        name="text"
+                                        value={search.text}
+                                        onChange={(e) => {setSearch(e.target.value)}}
+                                        type="text"className="form-control" placeholder="Search Names" />
                                     </div>
                                     </div>
                                     <div className="col">
@@ -62,7 +69,11 @@ function ContactList(){
             <div className="container">
                 <div className="row">
                     {
-                        contacts.length > 0 && contacts.map(contact => {
+                        contacts.length > 0 && contacts.filter((contact) => {
+                            return(
+                                contact.name.toLowerCase().includes(search.toLowerCase())
+                            )
+                        }).map(contact => {
                             return(
                                 <div className="col-md-6" key={contact.id}>
                                 <div className="card mb-3">
@@ -97,7 +108,7 @@ function ContactList(){
                                     </div>
                                 </div>
                             </div>
-                            )
+                            );
                         })
                     }
                 </div>
