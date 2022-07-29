@@ -4,13 +4,16 @@ import {NavLink} from "react-router-dom"
 function ContactList(){
     const[contacts, setContacts] = useState([]);
     const[search, setSearch] = useState('')
+    const[isLoaded, setIsLoaded] = useState(false)
 
 
     useEffect(() => {
         fetch("https://json-server-contact-api.herokuapp.com/contacts")
         .then((r) => r.json())
-        .then((contactData) => setContacts(contactData))
-
+        .then((contactData) => {
+            setContacts(contactData)
+            setIsLoaded(true);
+        })
     }, [])
 
     function handleDelete(contactId) {
@@ -24,7 +27,7 @@ function ContactList(){
           })
 
     }
-
+    if(!isLoaded) return <h3>Loading....</h3>
     return(
         <div>
         <section className="contact-search p-2" >

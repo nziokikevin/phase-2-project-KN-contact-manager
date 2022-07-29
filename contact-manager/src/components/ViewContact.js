@@ -4,13 +4,17 @@ import {NavLink, useParams} from "react-router-dom";
 function ViewContact(){
     const[contact, setContact] = useState([])
     const {contactId} = useParams();
+    const[isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
         fetch(`https://json-server-contact-api.herokuapp.com/contacts/${contactId}`)
         .then((r) => r.json())
-        .then((contactViewData) => setContact(contactViewData))
+        .then((contactViewData) => {
+            setContact(contactViewData)
+            setIsLoaded(true);
+        })
     }, [contactId])
-
+    if(!isLoaded) return <h3>Loading...</h3>
     return(
         <div>
             <section className="view-contact-intro p-3">
