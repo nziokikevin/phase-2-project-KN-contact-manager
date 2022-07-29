@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {NavLink} from "react-router-dom"
+import {NavLink, useHistory} from "react-router-dom"
 
 function AddContact(){
     const[contactAdd, setContactAdd] = useState({
@@ -13,14 +13,16 @@ function AddContact(){
     })
 
     const updateInput = (e) => {
-        setContactAdd({...contactAdd, contact:{...contactAdd.contact,[e.target.name]:e.target.value}})
+        setContactAdd({...contactAdd, contact:{...contactAdd.contact, [e.target.name]:e.target.value}})
     }
 
     const{contact} = contactAdd;
 
+    const history = useHistory()
+
     function handleSubmit(e){
         e.preventDefault();
-        const contactData = {
+        const contactAdd = {
             name: contact.name,
             phone: contact.mobile,
             email: contact.email,
@@ -32,10 +34,13 @@ function AddContact(){
             headers:{
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(contactData),
+            body: JSON.stringify(contactAdd),
         })
         .then((r) => r.json())
-        .then((newContact) => updateInput(newContact))
+        .then((newContact) => {
+            updateInput(newContact);
+            history.push("/");
+        });
     }
 
     return(
@@ -55,7 +60,7 @@ function AddContact(){
                                 <input
                                 required={true} 
                                 name="name"
-                                value={contact.name}
+                                value={contactAdd.name}
                                 onChange={updateInput}
                                 type="text" className="form-control" placeholder="Name" />
                             </div>
@@ -63,7 +68,7 @@ function AddContact(){
                                 <input
                                 required={true} 
                                 name="mobile"
-                                value={contact.mobile}
+                                value={contactAdd.mobile}
                                 onChange={updateInput}
                                 type="number" className="form-control" placeholder="Mobile" />
                             </div>
@@ -71,7 +76,7 @@ function AddContact(){
                                 <input 
                                 required={true} 
                                 name="email"
-                                value={contact.email}
+                                value={contactAdd.email}
                                 onChange={updateInput}
                                 type="email" className="form-control" placeholder="Email" />
                             </div>
@@ -79,7 +84,7 @@ function AddContact(){
                                 <input 
                                 required={true} 
                                 name="company"
-                                value={contact.company}
+                                value={contactAdd.company}
                                 onChange={updateInput}
                                 type="text" className="form-control" placeholder="Company" />
                             </div>
@@ -87,7 +92,7 @@ function AddContact(){
                                 <select 
                                 required={true} 
                                 name="group"
-                                value={contact.group}
+                                value={contactAdd.group}
                                 onChange={updateInput}
                                 className="form-control">
                                     <option>Select a group</option>
