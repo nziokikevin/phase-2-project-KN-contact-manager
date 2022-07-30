@@ -27,12 +27,12 @@ function ContactList(){
           })
 
     }
-    if(!isLoaded) return <div><button class="btn btn-primary" type="button" disabled>
-    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-    <span class="visually-hidden">Loading...</span>
+    if(!isLoaded) return <div><button className="btn btn-primary" type="button" disabled>
+    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    <span className="visually-hidden">Loading...</span>
   </button>
-  <button class="btn btn-primary" type="button" disabled>
-    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  <button className="btn btn-primary" type="button" disabled>
+    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
     Loading...
   </button>
   </div>

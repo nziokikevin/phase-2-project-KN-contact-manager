@@ -40,8 +40,7 @@ function AddContact(){
         .then((newContact) => {
         console.log(newContact);
             history.push("/");
-            e.target.reset()
-            
+            e.target.reset()      
         });
     }
 
