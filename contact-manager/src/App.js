@@ -1,9 +1,9 @@
 import React from "react";
 import {Switch, Route} from "react-router-dom";
-import ContactList from "./ContactList";
-import NavBar from "./NavBar";
-import AddContact from "./AddContact";
-import ViewContact from "./ViewContact";
+import ContactList from "./components/ContactList";
+import NavBar from "./components/NavBar";
+import AddContact from "./components/AddContact";
+import ViewContact from "./components/ViewContact";
 
 
 function App(){
